@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Tin Tức";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-12">
+        @Html.ActionLink("Trang chủ", "Index", "Default")       
+                <span> / </span>
+        <span>Tin tức - sự kiện</span>
+    </div>
+    <div class="col-lg-12">
+
+        @{ Html.RenderAction("getTinTuc", "Default");}
+    </div>
+</div>

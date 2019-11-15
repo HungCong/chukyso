@@ -1,0 +1,91 @@
+﻿@model WebDT.Models.DangNhap
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_Mylayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                Xoá
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div>
+                    <h3 style="margin-left:35%">Bạn có thật sự muốn xoá ?</h3>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayName("Tài Khoản:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.username)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Mật khẩu:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.password)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Họ Tên:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Địa Chỉ:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.address)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("E-Mail:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Số Điện Thoại:")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.phone)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Trạng thái:")
+                        </dt>
+
+                        <dd>
+                            @(Model.status.GetValueOrDefault(false) ? "Hiển Thị" : "Ẩn")
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Xóa" class="btn btn-default" /> |
+                            @Html.ActionLink("Quay lại danh sách", "Index")
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+﻿@model List<WebDT.Models.CartItem>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+    double? total = 0;
+}
+@section jsFooter{
+    <script src="~/Scripts/Controller/cartController.js"></script>
+}
+    
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h1><b>Giỏ Hàng</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+       @if (Session["UserName"] != null)
+       {
+            if (Model.Count > 0)
+            {
+                <table cellspacing="0" class="shop_table cart">
+                    <thead>
+                        <tr>
+
+                            <th class="product-thumbnail">Hình ảnh</th>
+                            <th class="product-name">Tên sản phẩm</th>
+                            <th class="product-price">Giá tiền(VNĐ)</th>
+                            <th class="product-quantity">Số lượng</th>
+                            <th class="product-subtotal">Tổng giá(VNĐ)</th>
+                            <th class="product-remove">&nbsp;</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var i in Model)
+                        {
+                            <tr class="cart_item">
+
+
+
+                                <td class="product-thumbnail">
+                                    <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/Content/img/@i.Product.img"></a>
+                                </td>
+
+                                <td class="product-name">
+                                    <a href="#">@i.Product.name</a>
+                                </td>
+
+                                <td class="product-price">
+                                    <span class="amount">
+                                        @if (i.Product.newprice != null)
+                                        {  @i.Product.newprice.GetValueOrDefault(0).ToString("N0");}
+                                        else
+                                        { @i.Product.price.GetValueOrDefault(0).ToString("N0"); }
+                                    </span>
+                                </td>
+
+                                <td class="product-quantity">
+                                    <div class="quantity buttons_added">
+
+                                        <input type="number" size="4" class="input-text qty text txt_quantity" data-id="@i.Product.id" title="Qty" value="@i.Quantity" min="0" step="1">
+
+                                    </div>
+                                </td>
+
+                                <td class="product-subtotal">
+                                    <span class="amount">
+                                        @if (i.Product.newprice != null)
+                                        {
+                                            @((i.Product.newprice * i.Quantity).GetValueOrDefault(0).ToString("N0"))
+                                        }
+                                        else
+                                        {
+                                            @((i.Product.price * i.Quantity).GetValueOrDefault(0).ToString("N0")) 
+                                        }
+                                    </span>
+                                </td>
+                                <td class="product-remove">
+                                    <a href="#"  class="btn btn-primary btn-edit" title="Sửa số lượng"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="#" data-id="@i.Product.id" class="btn btn-danger btn-delete" title="Xóa mặt hàng"><i class="glyphicon glyphicon-remove"></i></a>
+                                </td>
+
+
+                            </tr>
+                            if (i.Product.newprice != null)
+                            {
+                                total = total + i.Product.newprice * i.Quantity;
+                            }
+                            else
+                            {
+                                total = total + i.Product.price * i.Quantity;
+                            }
+                        }
+
+                    </tbody>
+                    <tr>
+
+                        <td colspan="4"><strong>Tổng cộng </strong></td>
+                        <td colspan="2"><strong>@string.Format("{0:0,0 vnđ}", total) </strong> </td>
+                    </tr>
+                    <tr>
+                        <td class="actions" colspan="6">
+                            <div class="coupon" style="width:80%">
+                                <form class="#"  action="@Url.Action("ThanhToan", "GioHang")">
+                                    <label for="coupon_code">Coupon:</label>
+                                    <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
+                                    <input type="submit" value="Phiếu Khuyến mãi" name="apply_coupon" class="button">
+                                    <input type="submit" value="Đặt hàng" name="proceed" class="checkout-button button alt wc-forward">
+                                </form>
+                          
+                            </div>
+
+                            <!--    <a type="submit" class="prev-btn" id="btnContinue" href="#">Cập nhập giỏ hàng</a> -->
+
+                        </td>
+                    </tr>
+                </table>
+
+            }
+            else
+            {
+                <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng</span>
+           }
+       }
+       else
+       {
+
+            <script type="text/javascript">
+                alert('Vui lòng đăng nhập.');
+            </script>
+          
+       }
+
+
+
+</div>
+
+@section scripts{
+                 
+}

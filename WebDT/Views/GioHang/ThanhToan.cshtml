@@ -1,0 +1,155 @@
+﻿@model List<WebDT.Models.CartItem>
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+    var totalPrice = 0;
+}
+@section jsFooter{
+ 
+<script src="/Scripts/Controller/CartController.js"></script>
+}
+
+@if (ViewBag.error != null)
+{
+    <div class="alert alert-danger" style="text-align: center">
+            @ViewBag.error
+    </div>
+}
+
+<div class="columns-container"  style="padding: 20px; margin-left: 25pc;">
+    <div class="container" id="columns">
+        <div role="tabpanel" style="width: 50%;">
+            <ul class="product-tab" role="tablist">
+                @*<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thanh toán khi nhận hàng</a></li>*@
+                <li role="presentation"><a href="#profile" aria-controls="home" role="tab" data-toggle="tab">Thanh toán online</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                    @foreach (var item in Model)
+                    {
+                        totalPrice = totalPrice + (int)item.Product.price * item.Quantity;
+                    }
+                    @using (Html.BeginForm("ThanhToan", "GioHang", FormMethod.Post, new { id = "ThanhToan" }))
+
+                    {
+                        @*<h2 class="page-heading">
+                            <span class="page-heading-title2" style="padding:20px">Chi tiết đặt hàng</span>
+                        </h2>*@
+                        @*<input type="hidden" name="productId" value="@pay.id" />
+                        <input type="hidden" name="totalPrice" value="@pay.price" />*@
+                        @*<input type="hidden" name="totalPrice" value="@totalPrice" />
+                        <div class="form-group">
+                            <label>Người nhận</label>
+                            <input name="tenkhachhang" class="form-control" value="@Session["ten"].ToString()" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label>Điện thoại</label>
+                            <input name="sdt" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input name="diachi" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>E-Mail</label>
+                            <input name="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Lời nhắn:</label>
+                            <textarea name="noidung" id="loinhan" class="form-control" value="" onfocus="this.value = '';" onblur="if (this.value == '') { this.value = 'Lời nhắn ghi ở đây...'; }"></textarea>
+                        </div>
+
+                        <button type="submit" class="button pull-right" style="margin-right: 25px">Gửi đơn hàng</button>*@
+                    }
+                    
+                </div>
+                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                    <div class="submit-review">
+                        @using (Html.BeginForm("Payment", "AccountPayment", FormMethod.Post, new { id = "Payment" }))
+                        {
+                            <p><label for="phone">Số tài khoản</label> <input name="accountNumber" value="@Session["accountNumber"]" type="text" readonly></p>
+                            <p><label for="adress">Tên chủ tài khoản</label> <input name="accountName" value="@Session["ten"].ToString().ToUpper()" type="text" readonly></p>
+                            <div class="rating-chooser">
+                                <input type="submit" name="btnConfirm" class="btn btn-primary btn-block" value="Thanh toán" />
+                            </div>
+                        }
+                        @*Chưa có tài khoản thanh toán: <a href="/dang-ky-thanh-toan"> Đăng Ký </a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+    </div>
+</div>
+
+
+               @section scripts{
+                   <script type="text/javascript">
+
+                       //validate phone number
+                       $.validator.addMethod("validatePhone", function (value, element) {
+                           return this.optional(element) || /(09|0[3|7|8|5])+([0-9]{8})\b/i.test(value);
+                       }, "Số điện thoại không đúng");
+
+                       //validate email
+                       $.validator.addMethod("validateEmail", function (value, element) {
+                           return this.optional(element) || /^(([^<>()\[\]\\.,;:\s@@"]+(\.[^<>()\[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+                       }, "Email sai");
+
+
+                       $(document).ready(function () {
+
+                           //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+                           $("#ThanhToan").validate({
+                               errorElement: "span",
+                               rules: {
+                                   diachi: {
+                                       required: true
+                                   },
+                                   email: {
+                                       required: true,
+                                       validateEmail: true
+                                   },
+                                   sdt: {
+                                       required: true,
+                                       validatePhone: true
+                                   }
+                               },
+                               messages: {
+                                   diachi: {
+                                       required: "Vui lòng nhập địa chỉ"
+                                   },
+                                   email: {
+                                       required: "Vui lòng nhập địa chỉ email",
+                                       validateEmail: "Địa chỉ email không đúng! Nhập lại."
+                                   },
+                                   sdt: {
+                                       required: "Vui lòng nhập số điện thoại",
+                                       validatePhone: "Số điện thoại không đúng! Nhập lại"
+                                   }
+                               }
+                           });
+
+                           $("#Payment").validate({
+                               errorElement: "span",
+                               rules: {
+                                   accountNumber: {
+                                       required: true,
+                                       minlength: 14,
+                                       maxlength: 14
+                                   },
+                                   accountName: "required"
+                               },
+                               messages: {
+                                   accountNumber: {
+                                       required: "Vui lòng nhập số thẻ",
+                                       minlength: "Số thẻ không đúng, phải đủ 14 chữ số! Nhập lại",
+                                       maxlength: "Số thẻ không đúng, phải đủ 14 chữ số! Nhập lại"
+                                   },
+                                   accountName: "Vui lòng nhập tên chủ thẻ"
+                               }
+                           });
+                       });
+                   </script>
+               }
+

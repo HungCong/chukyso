@@ -1,0 +1,132 @@
+﻿@model WebDT.Models.RegisterModel
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="content">
+    @using (Html.BeginForm("DangKy", "TaiKhoan", FormMethod.Post, new { id = "RegisterUser" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            
+            <h4 style="margin-top: 20px; margin-left:45%"> <b>Đăng ký thành viên</b> </h4>
+            <hr />
+            <div class="form-group" >
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @if (ViewBag.Success != null)
+                {
+                    <div class="alert alert-success"><p style="margin-left: 45%">@ViewBag.Success</p></div>
+                }
+            </div>
+            <div class="form-group" style="margin-left:25%">
+                @Html.LabelFor(model => model.username, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.username, new { @class = "form-control", name = "username" })
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left:25%">
+                @Html.LabelFor(model => model.password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control", name = "password", id = "password" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left:25%">
+                @Html.LabelFor(model => model.confirmpassword, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.confirmpassword, new { @class = "form-control", name = "confirmpassword" })
+                    @Html.ValidationMessageFor(model => model.confirmpassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left:25%">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.name, new { @class = "form-control", name = "name" })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left:25%">
+                @Html.LabelFor(model => model.accountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.accountNumber, new { @class = "form-control",name = "accountNumber" })
+                    @Html.ValidationMessageFor(model => model.accountNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left:25%">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Đăng ký" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section jsFooter{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+            $("#RegisterUser").validate({
+                errorElement: "span",
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 5,
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                    },
+                    confirmpassword: {
+                        required: true,
+                        equalTo: "#password"
+                    },
+                    name: {
+                        required: true,
+                        minlength: 5
+                    },
+                    accountNumber: {
+                        required: true,
+                        minlength: 14,
+                        maxlength: 14
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "Vui lòng nhập tên đăng nhập",
+                        minlength: "Tên đăng nhập phải ít nhất 5 ký tự"
+                    },
+                    password: {
+                        required: "Vui lòng nhập mật khẩu",
+                        minlength: "Tên mật khẩu phải ít nhất 6 ký tự"
+                    },
+                    confirmpassword: {
+                        required: "Vui lòng nhập lại mật khẩu",
+                        equalTo: 'Mật khẩu không trùng'
+                    },
+                    name: {
+                        required: "Vui lòng nhập họ và tên",
+                        minlength: "Họ và tên phải ít nhất 5 ký tự"
+                    },
+                    accountNumber: {
+                        required: "Vui lòng nhập số thẻ",
+                        minlength: "Số thẻ không đúng, phải đủ 14 chữ số! Nhập lại",
+                        maxlength: "Số thẻ không đúng, phải đủ 14 chữ số! Nhập lại"
+                    }                    
+                }
+            });
+        });
+    </script>
+}
+
+

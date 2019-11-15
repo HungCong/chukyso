@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebMayTinhModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="WebMayTinhEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categories" EntityType="WebMayTinhModel.category" />
+    <EntitySet Name="ChiTietGioHangs" EntityType="WebMayTinhModel.ChiTietGioHang" />
+    <EntitySet Name="DangNhaps" EntityType="WebMayTinhModel.DangNhap" />
+    <EntitySet Name="GioHangs" EntityType="WebMayTinhModel.GioHang" />
+    <EntitySet Name="GioiThieux" EntityType="WebMayTinhModel.GioiThieu" />
+    <EntitySet Name="HinhChieux" EntityType="WebMayTinhModel.HinhChieu" />
+    <EntitySet Name="menus" EntityType="WebMayTinhModel.menu" />
+    <EntitySet Name="products" EntityType="WebMayTinhModel.product" />
+    <EntitySet Name="AccountPayments" EntityType="WebMayTinhModel.AccountPayment" />
+  </EntityContainer>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="name" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="link" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="meta" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Precision="0" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="ChiTietGioHang">
+    <Key>
+      <PropertyRef Name="IDSanPham" />
+      <PropertyRef Name="IDGioHang" />
+    </Key>
+    <Property Name="IDSanPham" Nullable="false" Type="Int32" />
+    <Property Name="IDGioHang" Nullable="false" Type="Int32" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="Tien" Type="Double" />
+  </EntityType>
+  <EntityType Name="DangNhap">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="username" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="password" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="name" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="address" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="email" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="phone" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="buyLastDate" Precision="3" Type="DateTime" />
+    <Property Name="countOrder" Type="Int32" />
+    <Property Name="amountSpent" Type="Double" />
+    <Property Name="accountNumber" Type="Double" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="NgayTao" Precision="3" Type="DateTime" />
+    <Property Name="IDKhachHang" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="TenKhachHang" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="SDTKhachHang" MaxLength="20" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="DiaChi" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="Email" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="NoiDung" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="PayFormat" Type="Int32" />
+  </EntityType>
+  <EntityType Name="GioiThieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="NoiDung" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="meta" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="datebegin" Precision="0" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="HinhChieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="img" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="meta" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Precision="0" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="name" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="link" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="meta" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Precision="0" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="name" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="price" Type="Double" />
+    <Property Name="newprice" Type="Double" />
+    <Property Name="img" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="description" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="meta" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="hdie" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Precision="0" Type="DateTime" />
+    <Property Name="categoryid" Type="Int32" />
+    <Property Name="SoLuong" Type="Int32" />
+  </EntityType>
+  <EntityType Name="AccountPayment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="accountNumber" Type="Double" />
+    <Property Name="accountName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="accountBalance" Type="Double" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="so_n" Type="Int64" />
+    <Property Name="so_e" Type="Int64" />
+    <Property Name="pri_key" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="so_p" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+    <Property Name="so_q" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+    <Property Name="so_t" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>

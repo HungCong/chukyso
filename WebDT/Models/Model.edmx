@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebMayTinhModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountPayment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountNumber" Type="float" />
+          <Property Name="accountName" Type="nvarchar" MaxLength="500" />
+          <Property Name="accountBalance" Type="float" />
+          <Property Name="so_n" Type="bigint" />
+          <Property Name="so_e" Type="bigint" />
+          <Property Name="pri_key" Type="ntext" />
+          <Property Name="status" Type="bit" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="so_p" Type="nchar" MaxLength="1000" />
+          <Property Name="so_q" Type="nchar" MaxLength="1000" />
+          <Property Name="so_t" Type="nchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="link" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar" MaxLength="50" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="ChiTietGioHang">
+          <Key>
+            <PropertyRef Name="IDSanPham" />
+            <PropertyRef Name="IDGioHang" />
+          </Key>
+          <Property Name="IDSanPham" Type="int" Nullable="false" />
+          <Property Name="IDGioHang" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="Tien" Type="float" />
+        </EntityType>
+        <EntityType Name="DangNhap">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="100" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
+          <Property Name="buyLastDate" Type="datetime" />
+          <Property Name="countOrder" Type="int" />
+          <Property Name="amountSpent" Type="float" />
+          <Property Name="accountNumber" Type="float" />
+        </EntityType>
+        <EntityType Name="GioHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="IDKhachHang" Type="nvarchar" MaxLength="100" />
+          <Property Name="TenKhachHang" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDTKhachHang" Type="nchar" MaxLength="20" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="status" Type="bit" />
+          <Property Name="PayFormat" Type="int" />
+        </EntityType>
+        <EntityType Name="GioiThieu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="order" Type="int" />
+          <Property Name="meta" Type="nvarchar" MaxLength="50" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="HinhChieu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="link" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar" MaxLength="50" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="price" Type="float" />
+          <Property Name="newprice" Type="float" />
+          <Property Name="img" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="ntext" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hdie" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+          <Property Name="categoryid" Type="int" />
+          <Property Name="SoLuong" Type="int" />
+        </EntityType>
+        <EntityContainer Name="WebMayTinhModelStoreContainer">
+          <EntitySet Name="AccountPayment" EntityType="Self.AccountPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietGioHang" EntityType="Self.ChiTietGioHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DangNhap" EntityType="Self.DangNhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GioiThieu" EntityType="Self.GioiThieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HinhChieu" EntityType="Self.HinhChieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebMayTinhModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WebMayTinhEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="WebMayTinhModel.category" />
+          <EntitySet Name="ChiTietGioHangs" EntityType="WebMayTinhModel.ChiTietGioHang" />
+          <EntitySet Name="DangNhaps" EntityType="WebMayTinhModel.DangNhap" />
+          <EntitySet Name="GioHangs" EntityType="WebMayTinhModel.GioHang" />
+          <EntitySet Name="GioiThieux" EntityType="WebMayTinhModel.GioiThieu" />
+          <EntitySet Name="HinhChieux" EntityType="WebMayTinhModel.HinhChieu" />
+          <EntitySet Name="menus" EntityType="WebMayTinhModel.menu" />
+          <EntitySet Name="products" EntityType="WebMayTinhModel.product" />
+          <EntitySet Name="AccountPayments" EntityType="WebMayTinhModel.AccountPayment" />
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="name" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="link" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="meta" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Precision="0" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="ChiTietGioHang">
+          <Key>
+            <PropertyRef Name="IDSanPham" />
+            <PropertyRef Name="IDGioHang" />
+          </Key>
+          <Property Name="IDSanPham" Nullable="false" Type="Int32" />
+          <Property Name="IDGioHang" Nullable="false" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="Tien" Type="Double" />
+        </EntityType>
+        <EntityType Name="DangNhap">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="username" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="password" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="name" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="address" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="email" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="phone" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="buyLastDate" Precision="3" Type="DateTime" />
+          <Property Name="countOrder" Type="Int32" />
+          <Property Name="amountSpent" Type="Double" />
+          <Property Name="accountNumber" Type="Double" />
+        </EntityType>
+        <EntityType Name="GioHang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="NgayTao" Precision="3" Type="DateTime" />
+          <Property Name="IDKhachHang" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="TenKhachHang" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="SDTKhachHang" MaxLength="20" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="DiaChi" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Email" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="NoiDung" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="PayFormat" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GioiThieu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="NoiDung" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="meta" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="datebegin" Precision="0" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="HinhChieu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="img" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="meta" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Precision="0" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="name" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="link" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="meta" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Precision="0" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="name" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="price" Type="Double" />
+          <Property Name="newprice" Type="Double" />
+          <Property Name="img" MaxLength="100" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="description" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="meta" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="hdie" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Precision="0" Type="DateTime" />
+          <Property Name="categoryid" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AccountPayment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="Double" />
+          <Property Name="accountName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="accountBalance" Type="Double" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="so_n" Type="Int64" />
+          <Property Name="so_e" Type="Int64" />
+          <Property Name="pri_key" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="so_p" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Name="so_q" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Name="so_t" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebMayTinhModelStoreContainer" CdmEntityContainer="WebMayTinhEntities">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="WebMayTinhModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietGioHangs">
+            <EntityTypeMapping TypeName="WebMayTinhModel.ChiTietGioHang">
+              <MappingFragment StoreEntitySet="ChiTietGioHang">
+                <ScalarProperty Name="Tien" ColumnName="Tien" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="IDGioHang" ColumnName="IDGioHang" />
+                <ScalarProperty Name="IDSanPham" ColumnName="IDSanPham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DangNhaps">
+            <EntityTypeMapping TypeName="WebMayTinhModel.DangNhap">
+              <MappingFragment StoreEntitySet="DangNhap">
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="amountSpent" ColumnName="amountSpent" />
+                <ScalarProperty Name="countOrder" ColumnName="countOrder" />
+                <ScalarProperty Name="buyLastDate" ColumnName="buyLastDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GioHangs">
+            <EntityTypeMapping TypeName="WebMayTinhModel.GioHang">
+              <MappingFragment StoreEntitySet="GioHang">
+                <ScalarProperty Name="PayFormat" ColumnName="PayFormat" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SDTKhachHang" ColumnName="SDTKhachHang" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GioiThieux">
+            <EntityTypeMapping TypeName="WebMayTinhModel.GioiThieu">
+              <MappingFragment StoreEntitySet="GioiThieu">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HinhChieux">
+            <EntityTypeMapping TypeName="WebMayTinhModel.HinhChieu">
+              <MappingFragment StoreEntitySet="HinhChieu">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menus">
+            <EntityTypeMapping TypeName="WebMayTinhModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="WebMayTinhModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hdie" ColumnName="hdie" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="newprice" ColumnName="newprice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountPayments">
+            <EntityTypeMapping TypeName="WebMayTinhModel.AccountPayment">
+              <MappingFragment StoreEntitySet="AccountPayment">
+                <ScalarProperty Name="so_t" ColumnName="so_t" />
+                <ScalarProperty Name="so_q" ColumnName="so_q" />
+                <ScalarProperty Name="so_p" ColumnName="so_p" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="pri_key" ColumnName="pri_key" />
+                <ScalarProperty Name="so_e" ColumnName="so_e" />
+                <ScalarProperty Name="so_n" ColumnName="so_n" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="accountBalance" ColumnName="accountBalance" />
+                <ScalarProperty Name="accountName" ColumnName="accountName" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

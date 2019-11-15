@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebMayTinhModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountPayment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountNumber" Type="float" />
+    <Property Name="accountName" Type="nvarchar" MaxLength="500" />
+    <Property Name="accountBalance" Type="float" />
+    <Property Name="so_n" Type="bigint" />
+    <Property Name="so_e" Type="bigint" />
+    <Property Name="pri_key" Type="ntext" />
+    <Property Name="status" Type="bit" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="so_p" Type="nchar" MaxLength="1000" />
+    <Property Name="so_q" Type="nchar" MaxLength="1000" />
+    <Property Name="so_t" Type="nchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="link" Type="nvarchar(max)" />
+    <Property Name="meta" Type="nvarchar" MaxLength="50" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="ChiTietGioHang">
+    <Key>
+      <PropertyRef Name="IDSanPham" />
+      <PropertyRef Name="IDGioHang" />
+    </Key>
+    <Property Name="IDSanPham" Type="int" Nullable="false" />
+    <Property Name="IDGioHang" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="Tien" Type="float" />
+  </EntityType>
+  <EntityType Name="DangNhap">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="100" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="bit" />
+    <Property Name="buyLastDate" Type="datetime" />
+    <Property Name="countOrder" Type="int" />
+    <Property Name="amountSpent" Type="float" />
+    <Property Name="accountNumber" Type="float" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="IDKhachHang" Type="nvarchar" MaxLength="100" />
+    <Property Name="TenKhachHang" Type="nvarchar" MaxLength="100" />
+    <Property Name="SDTKhachHang" Type="nchar" MaxLength="20" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="NoiDung" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="status" Type="bit" />
+    <Property Name="PayFormat" Type="int" />
+  </EntityType>
+  <EntityType Name="GioiThieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="order" Type="int" />
+    <Property Name="meta" Type="nvarchar" MaxLength="50" />
+    <Property Name="datebegin" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="HinhChieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="img" Type="nvarchar" MaxLength="50" />
+    <Property Name="meta" Type="nvarchar(max)" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="link" Type="nvarchar(max)" />
+    <Property Name="meta" Type="nvarchar" MaxLength="50" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="price" Type="float" />
+    <Property Name="newprice" Type="float" />
+    <Property Name="img" Type="nvarchar" MaxLength="100" />
+    <Property Name="description" Type="ntext" />
+    <Property Name="meta" Type="nvarchar(max)" />
+    <Property Name="hdie" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
+    <Property Name="categoryid" Type="int" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <EntityContainer Name="WebMayTinhModelStoreContainer">
+    <EntitySet Name="AccountPayment" EntityType="Self.AccountPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietGioHang" EntityType="Self.ChiTietGioHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DangNhap" EntityType="Self.DangNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GioHang" EntityType="Self.GioHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GioiThieu" EntityType="Self.GioiThieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HinhChieu" EntityType="Self.HinhChieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

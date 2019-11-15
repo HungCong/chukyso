@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Đăng ký tài khoản thanh toán";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+
+<div class="content">
+    @using (Html.BeginForm("RegisterPayment", "AccountPayment", FormMethod.Post, new { id = "RegisterPayment" }))
+    {
+        <div class="form-horizontal">
+            <h4 style="margin-top: 20px; margin-left:45%"> <b>Đăng ký tài khoản thanh toán</b> </h4>
+            <hr />
+            <div class="form-group" style="margin-left: 27%">
+                <label class="control-label col-md-2">Số thẻ</label>
+                <div class="col-md-6" style="width: 70%">
+                    <input type="text" class="form-control" name="accountNumber" placeholder="Nhập số ghi trên thẻ..."/>
+                    <span class="text-danger">@ViewBag.Error_AccountNumber</span>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left: 27%">
+                <label class="control-label col-md-2">Tên chủ thẻ</label>
+                <div class="col-md-6" style="width: 70%">
+                    <input type="text" class="form-control" name="accountName" placeholder="Nhập tên chủ thẻ..."/>
+                    <span class="text-danger">@ViewBag.Error_accountNanme</span>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left: 27%">
+                <label class="control-label col-md-2">Số điện thoại</label>
+                <div class="col-md-6" style="width: 70%">
+                    <input type="text" class="form-control" name="phone" />
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left: 27%">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Đăng ký" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section jsFooter{
+    <script type="text/javascript">
+
+        //validate phone number
+        $.validator.addMethod("validatePhone", function (value, element) {
+            return this.optional(element) || /(09|0[3|7|8|5])+([0-9]{8})\b/i.test(value);
+        }, "Số điện thoại không đúng");
+
+        $(document).ready(function () {
+
+            //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+            $("#RegisterPayment").validate({
+                errorElement: "span",
+                rules: {
+                    accountNumber: {
+                        required: true,
+                        minlength: 14,
+                        maxlength: 14
+                    },
+                    accountName: "required",
+                    phone: {
+                        required: true,
+                        validatePhone: true
+                    }
+                },
+                messages: {
+                    accountNumber: {
+                        required: "Vui lòng nhập số thẻ",
+                        minlength: "Số thẻ không đúng, phải đủ 14 chữ số! Nhập lại",
+                        maxlength: "Số thẻ không đúng, phải đủ 14 chữ số! Nhập lại"
+                    },
+                    accountName: "Vui lòng nhập tên chủ thẻ",
+                    phone: {
+                        required: "Vui lòng nhập số điện thoại",
+                        validatePhone: "Số điện thoại không đúng! Nhập lại"
+                    }
+                }
+            });
+        });
+    </script>
+}
+

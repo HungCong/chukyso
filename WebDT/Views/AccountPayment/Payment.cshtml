@@ -1,0 +1,122 @@
+﻿@model List<WebDT.Models.CartItem>
+    @{
+        ViewBag.Title = "Xác nhận thanh toán";
+        Layout = "~/Views/Shared/_MyLayout.cshtml";
+        var acc = (WebDT.Models.AccountPayment)Session["AccountPayment"];
+        double? total = 0;
+    }
+
+
+    @Styles.Render("~/css/detail")
+    @Scripts.Render("~/js/detail")
+
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Mặt hàng đã mua</h2>
+
+                        @*@Html.Action("sanphamcungloai", "Product", new { id = 1 })*@
+
+                        @foreach (var i in Model)
+                            {
+                                <div class="thubmnail-recent">
+                                    <img src="~/Content/img/@i.Product.img" class="recent-thumb" alt="">
+                                    <h2><a href="/san-pham/@i.Product.meta/@i.Product.id">@i.Product.name</a></h2>
+                                    <div class="product-sidebar-price">
+                                        @if (i.Product.newprice != null)
+                                        {
+
+                                            <ins>@string.Format("{0:0,0 vnđ}", i.Product.newprice)</ins>
+                                            <del>@string.Format("{0:0,0 vnđ}", i.Product.price)</del>
+                                        }
+                                        else
+                                        {
+
+                                            <ins>@string.Format("{0:0,0 vnđ}", i.Product.price)</ins>
+                                        }
+
+
+                                    </div>
+                                    <div class="product-sidebar-price">
+                                        Số lượng: @i.Quantity
+                                    </div>
+                                </div>
+                                if (i.Product.newprice != null)
+                                {
+                                     total = total + i.Product.newprice * i.Quantity;
+                                }
+                                else
+                                {
+                                     total = total + i.Product.price * i.Quantity;
+                                }
+                        }
+                    </div>
+                     <div class="single-sidebar">
+                         Tổng tiền : <ins>@string.Format("{0:0,0 vnđ}", total)</ins>
+                     </div>   
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="product-content-right">
+
+
+                        <div class="col-sm-8">
+                            <div class="product-inner">
+                                <h2>Xác nhận thanh toán</h2>
+                                <div class="submit-review">
+                                    <table style="width:100%">
+                                        <tr>
+                                            @*<th></th>
+                                                <th></th>*@
+                                        </tr>
+                                        <tr>
+                                            <td>Số thẻ</td>
+                                            <td>@acc.accountNumber</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tên chủ thẻ</td>
+                                            <td>@acc.accountName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Số dư tài khoản</td>
+                                            <td>@string.Format("{0:0,0 vnđ}", acc.accountBalance) </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tổng tiền thanh toán</td>
+                                            <td>@string.Format("{0:0,0 vnđ}", total)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Số tiền còn lại</td>
+                                            <td>@string.Format("{0:0,0 vnđ}", acc.accountBalance - total)</td>
+                                        </tr>
+                                    </table>
+                                    @using(Html.BeginForm("ConfirmPayment", "AccountPayment", FormMethod.Post))
+                                    {
+                                        <input type="hidden" name="accountNumber" value="@acc.accountNumber"/>
+                                        <input type="hidden" name="total" value="@total" />
+                                        if(total > acc.accountBalance)
+                                        {
+                                            <span style="color:red"> Số dư tài khoản của bạn không đủ để thực hiện thanh toán</span>
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" class="btn btn-primary" value="Xác nhận thanh toán" style="margin: 15px;" />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50bab7028a4b4eb581bca029a489c6c7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="WebMayTinhModel.category" PointX="2.75" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.ChiTietGioHang" PointX="4.75" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.DangNhap" PointX="0.75" PointY="4.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.GioHang" PointX="2.75" PointY="4.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.GioiThieu" PointX="4.75" PointY="3.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.HinhChieu" PointX="6.75" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.menu" PointX="0.75" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.product" PointX="6.75" PointY="3.75" Width="1.5" />
+        <EntityTypeShape EntityType="WebMayTinhModel.AccountPayment" Width="1.5" PointX="9.375" PointY="4.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,53 @@
+﻿
+@model List<WebDT.Models.DsSP>
+@{
+    ViewBag.Title = "Đơn hàng đã mua";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+@section jsFooter{
+    <script src="~/Scripts/Controller/cartController.js"></script>}
+
+
+<div >
+    <h2 style="padding:20px 0px; text-align:center; color:red;background-color:#bdf998"><b>DANH SÁCH SẢN PHẨM ĐÃ MUA</b></h2> 
+
+</div>
+
+<table cellspacing="0" class="shop_table cart">
+    <thead>
+        <tr>
+            <th class="product-thumbnail">Hình ảnh</th>
+            <th class="product-name">Tên sản phẩm</th>
+            <th class="product-quantity">Số lượng</th>
+            <th class="product-subtotal">Tổng giá(VNĐ)</th>
+            <th class="product-price">Ngày đặt</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr class="cart_item">
+
+                <td class="product-thumbnail">
+                    <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/Content/img/@i.Hinh"></a>
+                </td>
+
+                <td class="product-name" style="text-align:left" >
+                    <a href="#">@i.Tensp</a>
+                </td>
+
+                <td class="product-price">
+                    <a>@i.SoLuong</a>
+                </td>
+
+                <td class="product-quantity">
+                    <a>@i.Tien</a>
+                </td>
+                <td class="product-name">
+                    <a href="#">@i.NgayDat</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

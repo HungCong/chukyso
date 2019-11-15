@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebMayTinhModelStoreContainer" CdmEntityContainer="WebMayTinhEntities">
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="WebMayTinhModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTietGioHangs">
+      <EntityTypeMapping TypeName="WebMayTinhModel.ChiTietGioHang">
+        <MappingFragment StoreEntitySet="ChiTietGioHang">
+          <ScalarProperty Name="Tien" ColumnName="Tien" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="IDGioHang" ColumnName="IDGioHang" />
+          <ScalarProperty Name="IDSanPham" ColumnName="IDSanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DangNhaps">
+      <EntityTypeMapping TypeName="WebMayTinhModel.DangNhap">
+        <MappingFragment StoreEntitySet="DangNhap">
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="amountSpent" ColumnName="amountSpent" />
+          <ScalarProperty Name="countOrder" ColumnName="countOrder" />
+          <ScalarProperty Name="buyLastDate" ColumnName="buyLastDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GioHangs">
+      <EntityTypeMapping TypeName="WebMayTinhModel.GioHang">
+        <MappingFragment StoreEntitySet="GioHang">
+          <ScalarProperty Name="PayFormat" ColumnName="PayFormat" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="SDTKhachHang" ColumnName="SDTKhachHang" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GioiThieux">
+      <EntityTypeMapping TypeName="WebMayTinhModel.GioiThieu">
+        <MappingFragment StoreEntitySet="GioiThieu">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HinhChieux">
+      <EntityTypeMapping TypeName="WebMayTinhModel.HinhChieu">
+        <MappingFragment StoreEntitySet="HinhChieu">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="menus">
+      <EntityTypeMapping TypeName="WebMayTinhModel.menu">
+        <MappingFragment StoreEntitySet="menu">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="WebMayTinhModel.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hdie" ColumnName="hdie" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="newprice" ColumnName="newprice" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountPayments">
+      <EntityTypeMapping TypeName="WebMayTinhModel.AccountPayment">
+        <MappingFragment StoreEntitySet="AccountPayment">
+          <ScalarProperty Name="so_t" ColumnName="so_t" />
+          <ScalarProperty Name="so_q" ColumnName="so_q" />
+          <ScalarProperty Name="so_p" ColumnName="so_p" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="pri_key" ColumnName="pri_key" />
+          <ScalarProperty Name="so_e" ColumnName="so_e" />
+          <ScalarProperty Name="so_n" ColumnName="so_n" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="accountBalance" ColumnName="accountBalance" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

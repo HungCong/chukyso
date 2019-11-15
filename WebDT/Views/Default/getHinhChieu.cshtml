@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebDT.Models.HinhChieu>
+<div class="block-slider block-slider4">
+    <ul class="" id="bxslider-home4">
+      @foreach (var i in Model)
+      {
+         <li>
+            <img src="~/Content/img/@i.img" alt="Slide">           
+        </li>
+      }
+    </ul>
+</div>
